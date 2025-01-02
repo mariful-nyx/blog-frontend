@@ -20,6 +20,7 @@ const categoriesSlice = createSlice({
     reducers: {
         setCategories: (state, action) => {
             state.categories = action.payload
+            state.isLoaded = true
         }
     }
 })

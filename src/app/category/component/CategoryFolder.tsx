@@ -8,12 +8,15 @@ import { useSelector } from "react-redux";
 import { fetchCategories } from "@/redux/categoriesSlice";
 
 function CategoryFolder({category}: {category:string}) {
-  const categoryList = useSelector((state:RootState)=>state.categories.categories)
+  const { categories, isLoaded } = useSelector((state:RootState)=>state.categories)
+  
   const dispatch = useAppDispatch();
   
   useEffect(()=>{
-    dispatch(fetchCategories())
-  },[])
+    if(!isLoaded){
+      dispatch(fetchCategories())
+    }
+  },[isLoaded])
 
 
   function findCategoryPath(categories: Categories[], targetName: string): string[] | null {
@@ -39,7 +42,7 @@ function CategoryFolder({category}: {category:string}) {
   return (
     <div>
       <div className="text-sm">
-        <Link href={'/'} className="text-blue-600 hover:underline">{`home`}</Link> {` > `}{findCategoryPath(categoryList, category.split('-').join(' '))?.join(' > ')}
+        <Link href={'/'} className="text-blue-600 hover:underline">{`home`}</Link> {` > `}{findCategoryPath(categories, category.split('-').join(' '))?.join(' > ')}
       </div>
     </div>
   )
