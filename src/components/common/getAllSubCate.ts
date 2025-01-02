@@ -1,18 +1,19 @@
-import { Categories, Subcategory } from "@/types/type";
+import { Categories, SubCategories, SubSubCategories } from "@/types/type";
 
 export const getAllSubcategories = (categories: Categories[] ): string[] => {
-    let result:string[] = [];
+    const result:string[] = [];
 
     
     if (Array.isArray(categories)){
       categories.forEach((category:Categories) => {
-        category.subcategories.forEach((subcategory:Subcategory) => {
-          result.push(subcategory.name); // Add the subcategory name
-    
-          if (subcategory.subcategories) {
-            result = result.concat(getAllSubcategories([subcategory as Categories])); // Recursively add sub-subcategories
-          }
-        });
+        if(category.subcategories){
+          category.subcategories.forEach((subcategory:SubCategories) => {
+            subcategory.subsubcategories?.forEach((subsubcat:SubSubCategories)=>{
+              result.push(subsubcat.name); 
+
+            })
+          });
+        }
       })}
   
     return result;

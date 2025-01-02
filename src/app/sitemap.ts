@@ -1,6 +1,5 @@
-import { GetPosts } from "@/api/data";
+import { GetCategories, GetPosts } from "@/api/data";
 import { MetadataRoute } from "next";
-import category from '@/category.json'
 import { getAllSubcategories } from "@/components/common/getAllSubCate";
 import { PostType } from "@/types/type";
 
@@ -15,7 +14,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 1,
   }));
 
-  const subCategories = getAllSubcategories(category)
+  const cateData = await GetCategories()
+
+  const subCategories = getAllSubcategories(cateData)
 
   const categoriesSitemap = subCategories.map((cat)=>({
     url: `${process.env.BASE_URL}/category/${cat.toLowerCase().split(' ').join('-')}/`,

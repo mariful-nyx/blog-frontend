@@ -1,3 +1,4 @@
+"use client"
 import { PostListResponse } from '@/types/type'
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react'
