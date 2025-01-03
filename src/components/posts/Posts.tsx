@@ -2,7 +2,8 @@ import React from "react";
 import moment from "moment";
 import Link from "next/link";
 import { Post, PostListResponse } from "@/types/type";
-import { MdOutlineImageNotSupported } from "react-icons/md";
+import Image from "next/image";
+import noImg from "@/assets/images/noImage.jpg"
 
 function Posts({ data }: { data: PostListResponse }) {
   return (
@@ -10,22 +11,23 @@ function Posts({ data }: { data: PostListResponse }) {
       <div className="">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-5 gap-y-8 mt-4">
           {data?.results.map((post: Post, index: number) => (
-            <div key={index} className="group">
+            <div key={index} className="group dark:bg-gray-800 dark:rounded-md">
               <Link href={`/posts/${post.slug}`}>
                 {post?.thumbnail ? 
                   <img
                     src={post?.thumbnail}
                     alt={post?.thumbnail.split("/").at(-1) || ""}
-                    height={200}
-                    className="aspect-video object-cover"
+                    className="aspect-video object-cover h-[200px]"
                   />
                   :
-                  <MdOutlineImageNotSupported 
-                    className="h-[200px] w-full aspect-video text-red-200" 
-                  />
+                <Image
+                  src={noImg}
+                  alt=""
+                  className="aspect-video object-cover h-[200px] dark:mix-blend-overlay"
+                />
                 }
               </Link>
-              <div className="mt-3">
+              <div className="mt-3 dark:px-2 dark:pb-2">
                 <Link
                   href={`/posts/${post.slug}`}
                   className="mt-1 font-bold text-lg group-hover:text-green-500 hover:dark:text-green-500 duration-200"

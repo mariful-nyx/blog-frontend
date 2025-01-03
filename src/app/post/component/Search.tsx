@@ -34,7 +34,7 @@ const SearchComponent = () => {
             placeholder="search here"
             value={search || ''}
             onChange={handleSearchChange}
-            className="py-1 px-3 w-full border border-slate-400 focus:outline focus:outline-slate-700 text-slate-400 rounded-md"
+            className="py-1 px-3 w-full border border-slate-400 focus:outline focus:outline-slate-700 text-slate-400 rounded-md bg-white dark:bg-gray-800 "
             required={true}
           />
           <FaSearch className="absolute right-2 top-2 text-slate-400" />

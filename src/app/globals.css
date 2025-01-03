@@ -41,5 +41,4 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis; /* Add the ellipsis (...) */
-  max-width: 300px; /* Optional: Set max width to control where the text truncates */
 }
