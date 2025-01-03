@@ -139,7 +139,7 @@ export interface PostType {
 
 
 
-  export interface User {
+  export interface UserDetailType {
     id: number;
     username: string;
     email: string;
@@ -155,6 +155,29 @@ export interface PostType {
     posts: Post[];
     comments: Comment[];
     role: string;
+    status: string;
+    profession: string;
+    university: string;
+  }
+  
+
+
+
+
+  export interface User {
+    id: number;
+    username: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    avater: string | null;
+    date_joined: string;
+    role: 'GENERAL' | 'MODERATOR' | 'ADMIN'; // You can expand the role options as needed
+    status: string;
+    profession: string;
+    university: string;
+    posts: number;
+    comments: number;
   }
   
   export interface PaginatedUsers {

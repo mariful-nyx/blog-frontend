@@ -33,7 +33,7 @@ export default async function Home() {
         <div className="mt-12">
           <TopAuthor data={userData}/>
           <div className="flex justify-center sm:justify-end mt-8">
-            <MoreOptionButton buttonName="see more" href="/news"/>
+            <MoreOptionButton buttonName="see more" href="/author"/>
           </div>
         </div>
       </div>

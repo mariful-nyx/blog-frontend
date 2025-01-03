@@ -16,7 +16,7 @@ function TopAuthor({data}: {data: PaginatedUsers}) {
             <Link
               href={`/profile/${author.username}`}
               key={index}
-              className="relative group flex flex-col justify-items-center items-center bg-white px-4 pt-10 pb-4 rounded-md shadow-md hover:shadow-lg"
+              className="relative group flex flex-col justify-items-center items-center bg-white dark:bg-gray-800 px-4 pt-10 pb-4 rounded-md shadow-md hover:shadow-lg"
             >
               <div className="absolute top-0 right-0">
                 <RoleBadge name={author.role}/>
@@ -29,13 +29,13 @@ function TopAuthor({data}: {data: PaginatedUsers}) {
                   />
                 : 
                   <FaRegUserCircle 
-                    className="h-[100px] w-[100px] aspect-square rounded-full object-cover mb-3"
+                    className="h-[100px] w-[100px] aspect-square rounded-full object-cover mb-3 dark:text-gray-400"
                   /> 
               }
               <div
-                className="text-nowrap uppercase font-semibold text-sm text-slate-700 group-hover:text-blue-500 duration-200 "
+                className="text-nowrap uppercase font-semibold text-sm text-slate-700 dark:text-slate-300 group-hover:text-blue-500 duration-200 "
               >
-                {author.first_name} {author.last_name}
+                {author.first_name || author.username} {author.last_name}
               </div>
             </Link>
           ))}
