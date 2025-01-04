@@ -11,9 +11,9 @@ export default function NotFound() {
       <p>Could not find requested resource</p>
       <Link
         href="/"
-        className="flex flex-row items-center gap-4 group dark:bg-white bg-black py-1 px-6 text-white dark:text-black rounded-md font-bold dark:hover:bg-gray-300 transition-all duration-150 hover:bg-gray-700"
+        className=" group flex flex-row items-center gap-4 group dark:bg-gray-800 bg-black py-1 px-6 text-white dark:text-slate-300 rounded-md font-bold transition-all duration-150 hover:bg-gray-700 dark:hover:bg-slate-900"
       >
-        <GoArrowLeft className="transition-all duration-150 group-hover:pl-[-10px]"/> Return Home
+        <GoArrowLeft className="group-hover:translate-x-[-8px] transition-all duration-150 group-hover:pl-[-10px]"/> Return Home
       </Link>
     </div>
   );

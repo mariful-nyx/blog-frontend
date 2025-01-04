@@ -16,8 +16,6 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const post = await Post(params.slug);
 
-  console.log(baseUrl, "======")
-
   return {
     title: post?.title,
     description: post?.description,

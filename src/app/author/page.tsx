@@ -31,7 +31,6 @@ async function Author({searchParams}: {searchParams: AuthorParams}) {
                 <Link
                   href={`/profile/${user.username}`} 
                   key={index}
-                  
                   legacyBehavior
                 >
                   <div className='group relative flex justify-start gap-3 shadow-md hover:shadow-lg px-4 py-4 rounded-md bg-white dark:bg-gray-800'>

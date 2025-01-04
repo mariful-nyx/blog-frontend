@@ -6,6 +6,10 @@ import Footer from "@/components/Footer";
 import { Provider } from "react-redux";
 import store from "@/redux/store";
 import GlobalProvider from "@/context/GlobalContext";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import the default CSS for Toastify
+
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,7 +40,19 @@ export default function RootLayout({
       >
         <Provider store={store}>
           <GlobalProvider>
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
             <NavBar />
+
               {children}
             <Footer />
           </GlobalProvider>

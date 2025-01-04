@@ -3,30 +3,20 @@ import { UserDetailType } from '@/types/type'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { FaRegUserCircle } from 'react-icons/fa'
 import noImg from '@/assets/images/noImage.jpg'
+import ProfilePic from '../components/ProfilePic'
 
 
 async function Profile({params}:{params:{slug:string}}) {
 
   const user:UserDetailType = await GetUserDetail(params.slug)
 
+
+
   return (
     <div className='max-w-[1180px] mx-auto px-4 lg-px-10'>
       <div className='mt-12 flex flex-col gap-3 items-center w-full'>
-        <div>
-          {user?.avater ? 
-              <img
-                src={user?.avater}
-                alt={user?.avater.split('/').at(-1) || ""}
-                className='h-[200px] w-[200px] object-cover rounded-full'
-              />
-            : 
-              <FaRegUserCircle
-                className="h-[200px] w-[200px] aspect-square rounded-full object-cover mb-3 dark:text-slate-500"
-              /> 
-          }
-        </div>
+          <ProfilePic />
         <div>
           <div className='text-3xl font-bold text-slate-700 dark:text-slate-300'>
             {user?.first_name} {user?.last_name}
