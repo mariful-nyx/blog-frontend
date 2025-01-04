@@ -191,3 +191,27 @@ export interface PostType {
     results: User[];
   }
   
+
+
+
+  export interface LoginFormData {
+    email: string;
+    password: string;
+  }
+
+
+
+  export interface ApiErrorResponse {
+    error: string;
+  }
+
+  export interface Refresh {
+    refresh: string;
+  }
+
+
+  export interface UpdatePhotoFormData {
+   username:string;
+   email: string;
+   avater: File;
+  }

@@ -36,7 +36,6 @@ async function Post({searchParams}: {searchParams: PostParams}) {
                           <Link
                             href={`/posts/${post.slug}`}
                             key={index}
-                           
                             legacyBehavior
                           >
                             <div className='h-[150px] rounded-md shadow-md hover:shadow-lg duration-200 group w-full bg-white dark:bg-gray-800'>

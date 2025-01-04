@@ -24,7 +24,7 @@ const SearchComponent = () => {
   }
 
   return (
-    <form action="/post">
+    <form action="/post" className="z-20">
       <div className="flex justify-center items-center gap-4">
         <div className="relative w-1/4">
           <input
