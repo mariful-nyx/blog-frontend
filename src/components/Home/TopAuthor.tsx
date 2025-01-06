@@ -9,7 +9,7 @@ function TopAuthor({data}: {data: PaginatedUsers}) {
 
   return (
     <div className="">
-      <h2 className="mb-4">TopAuthor</h2>
+      <h2 className="mb-4">Author</h2>
       <div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ml:grid-cols-4 gap-4">
           {data?.results.map((author:User, index:number) => (

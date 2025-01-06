@@ -5,10 +5,12 @@ import { setAccessToken, setLoading, logout } from '@/redux/authSlice';
 import { RootState } from '@/redux/store'
 import useApi from '@/api/api';
 import Cookies from 'js-cookie';
+import { usePathname } from 'next/navigation';
 
 const useAuth = () => {
   const api = useApi()
   const dispatch = useDispatch();
+  const pathname = usePathname()
   const { isAuthenticated, loading } = useSelector((state: RootState) => state.auth);
   const refresh = Cookies.get('bpmRefreshToken')
 
@@ -64,7 +66,7 @@ const useAuth = () => {
 
 
    
-  }, [dispatch]);
+  }, [dispatch, pathname]);
 
   return { isAuthenticated, loading };
 };
