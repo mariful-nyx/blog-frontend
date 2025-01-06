@@ -1,6 +1,6 @@
-import { LoginFormData, Refresh, UpdatePhotoFormData } from "@/types/type"
+import { LoginFormData, Refresh } from "@/types/type"
 import useInterceptor from "./interceptor"
-
+import Cookies from "js-cookie"
 
 
 const useApi = () => {
@@ -10,10 +10,17 @@ const useApi = () => {
         // POst
         posts: (params={}) => interceptor.get(`/bpm/post/api/v1/posts/`, {params: params}),
         post: (slug: string) => interceptor.get(`/bpm/post/api/v1/posts/${slug}/`),
+        createPost: (data: unknown) => {
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Cookies.get('bpmAccessToken')}`,
+            }
+            return interceptor.post(`/bpm/post/api/v1/post-create/`, data, {headers: headers})
+        },
 
         // user
         getUsers: (params={}) => interceptor.get(`/bpm/user/api/v1/users/`, { params: params }),
-        updateProfilePhoto: (username:string, data:UpdatePhotoFormData) => {
+        updateProfile: (username:string, data:unknown) => {
             const customHeaders = {
                 'Content-Type': 'multipart/form-data'
             };

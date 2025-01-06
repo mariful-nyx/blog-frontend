@@ -36,6 +36,7 @@ function Login() {
       Cookies.set('bpmUsername', data.user.username)
       Cookies.set('bpmUserEmail', data.user.email)
       router.replace(`/`)
+      router.refresh()
 
     } catch(error) {
       if (isAxiosError(error)) {

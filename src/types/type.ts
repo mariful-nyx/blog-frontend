@@ -210,8 +210,11 @@ export interface PostType {
   }
 
 
-  export interface UpdatePhotoFormData {
+  export interface UpdateProfileTypes {
    username:string;
    email: string;
-   avater: File;
+   avater?: File;
+   status?: string;
+   profession?: string;
+   university?: string;
   }

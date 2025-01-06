@@ -1,5 +1,7 @@
 // store/authSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
+
 
 interface AuthState {
   accessToken: string | null;
@@ -27,6 +29,10 @@ const authSlice = createSlice({
     logout: (state) => {
       state.accessToken = null;
       state.isAuthenticated = false;
+      Cookies.remove('bpmAccessToken')
+      Cookies.remove('bpmRefreshToken')
+      Cookies.remove('bpmUserEmail')
+      Cookies.remove('bpmUsername')
     },
   },
 });
