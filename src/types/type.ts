@@ -218,3 +218,15 @@ export interface PostType {
    profession?: string;
    university?: string;
   }
+
+
+
+
+  export interface PostFormData {
+    thumbnail: un,
+    title: string,
+    description: string,
+    tag: string[],
+    category: number,
+    related_article: number[]
+  }
