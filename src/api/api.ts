@@ -12,7 +12,7 @@ const useApi = () => {
         post: (slug: string) => interceptor.get(`/bpm/post/api/v1/posts/${slug}/`),
         createPost: (data: unknown) => {
             const headers = {
-                'Content-Type': 'application/json',
+                'Content-Type': 'multipart/form-datan',
                 'Authorization': `Bearer ${Cookies.get('bpmAccessToken')}`,
             }
             return interceptor.post(`/bpm/post/api/v1/post-create/`, data, {headers: headers})
@@ -36,6 +36,7 @@ const useApi = () => {
 
         // Category
         getCategories: () => interceptor.get(`/bpm/category/api/v1/categories/`),
+        
     }
     return api
 }
