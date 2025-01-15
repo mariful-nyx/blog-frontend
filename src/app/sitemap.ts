@@ -7,7 +7,7 @@ import { env } from "process";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts:PostType[] = await GetPosts({all_items:true});
-  const BASE_URL = env.NODE_ENV === "production" ? '' : 'http://localhost:3000'
+  const BASE_URL = env.NODE_ENV === "production" ? 'https://predienblog.vercel.app' : 'http://localhost:3000'
 
   const postsSitemap = posts?.map((post:PostType) => ({
     url: `${BASE_URL}/posts/${post.slug}`,
@@ -28,14 +28,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }))
 
   const routers = [
-    '/',
+    '',
     '/author',
     '/news',
     '/post',
   ]
 
   const routersSitemap = routers.map((route)=>({
-    url: `${process.env.BASE_URL}/${route}/`,
+    url: `${BASE_URL}${route}/`,
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 1,
