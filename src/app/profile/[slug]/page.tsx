@@ -25,6 +25,7 @@ async function Profile({params}:{params:{slug:string}}) {
               src={user?.avater}
               alt={user?.avater.split("/").at(-1) || ""}
               className="h-[200px] w-[200px] object-cover rounded-full group-hover:mix-blend-darken"
+              
             />
           ) : (
             <FaRegUserCircle className="h-[200px] w-[200px] aspect-square rounded-full object-cover mb-3 text-slate-700  dark:text-slate-500 group" />
@@ -72,7 +73,7 @@ async function Profile({params}:{params:{slug:string}}) {
               </div>
             </div>
             <div>
-              <Logout/>
+              <Logout user={user}/>
             </div>
 
           </div>
@@ -80,8 +81,8 @@ async function Profile({params}:{params:{slug:string}}) {
             <div>
               <h2 className='text-green-500'>Posts</h2>
               <div className='flex flex-col gap-4 mt-4'>
-                {user.posts.length ? 
-                  user.posts.map((post, index)=>(
+                {user?.posts?.length ? 
+                  user?.posts.map((post, index)=>(
                   <Link
                     href={`/posts/${post.slug}`}
                     key={index}
@@ -90,15 +91,17 @@ async function Profile({params}:{params:{slug:string}}) {
                     <div className='flex gap-4'>
                       {post.thumbnail ? 
                         <img
-                          src={post.thumbnail}
+                          src={post?.thumbnail}
                           alt=''
                           className='h-[150px] w-[200px] object-cover'
+                       
                         />
                         :
                         <Image
                           src={noImg}
                           alt=''
                           className='h-[150px] w-[200px] object-cover dark:mix-blend-overlay'
+                         
                         />
                       }
                       <div 
@@ -130,7 +133,7 @@ async function Profile({params}:{params:{slug:string}}) {
             <div className='mt-8'>
               <h2 className='text-green-500'>Comments</h2>
               <div className='mt-4'>
-                {user.comments.length ? 
+                {user?.comments.length ? 
                   user.comments.map((comment, index)=>(
                     <div key={index}>
                       {comment.comment}

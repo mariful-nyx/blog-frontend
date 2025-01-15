@@ -19,18 +19,21 @@ export async function generateMetadata({
   return {
     title: post?.title,
     description: post?.description,
+    alternates: {
+      canonical: `${baseUrl}/posts/${post?.slug}`
+    },
 
     openGraph: {
       title: post?.title,
       description: post?.description,
       url: `${baseUrl}/posts/${post?.slug}`, // Using dynamic canonical URL
-      images: [{ url: post?.thumbnail }],
+      images: [{ url: post?.thumbnail_img }],
     },
     twitter: {
       card: "summary_large_image",
       title: post?.title,
       description: post?.description,
-      images: post?.thumbnail,
+      images: post?.thumbnail_img,
     },
     icons: {
       icon: "/faviconUrl", // Dynamically set favicon
@@ -44,9 +47,10 @@ export async function generateMetadata({
 
 async function PostView({ params }: { params: { slug: string } }) {
   const post:PostType = await Post(params.slug);
+  console.log(post)
 
   const dom = new JSDOM(post?.description);
-  const headings = Array.from(dom.window.document.querySelectorAll('h2')).map(h2 => h2.textContent || '');
+  const headings = Array.from(dom.window.document.querySelectorAll('h2')).map(h2 => h2?.textContent || '');
 
   return (
     <>

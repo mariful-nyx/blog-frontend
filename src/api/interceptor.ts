@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-export const API_URL = process.env.NODE_ENV ? "http://127.0.0.1:8000" : "https://saaddev.pythonanywhere.com"
+export const API_URL = process.env.NODE_ENV === "production" ? "https://blog-5pvj.vercel.app" : "https://blog-5pvj.vercel.app"
 
 
 const useInterceptor = () => {

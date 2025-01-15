@@ -36,7 +36,7 @@ function NavBar() {
     <div className="max-w-[1180px] mx-auto ">
       <div className="hidden sm:flex justify-between h-[50px] items-center px-2">
         <div>
-          <h2><Link href={`/`}>store</Link> </h2>
+          <h2><Link href={`/`}>predien blog</Link> </h2>
         </div>
         <div>
           <ul className="flex gap-6 font-bold">

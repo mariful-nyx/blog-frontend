@@ -26,6 +26,7 @@ function TopAuthor({data}: {data: PaginatedUsers}) {
                     src={author.avater}
                     alt={author?.avater?.split("/").at(-1) || ""}
                     className="h-[100px] w-[100px] aspect-square rounded-full object-cover mb-3"
+                   
                   />
                 : 
                   <FaRegUserCircle 

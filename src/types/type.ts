@@ -53,7 +53,8 @@ export interface PostType {
     id: number;
     user: number;
     posted_by: string;
-    thumbnail: string;
+    thumbnail: number;
+    thumbnail_img: string;
     title: string;
     description: string;
     tag: Tag[];
@@ -94,6 +95,7 @@ export interface PostType {
       user: number;
       posted_by: string;
       thumbnail: string;
+      thumbnail_img: string;
       title: string;
       description: string;
       created_at: string;  // ISO Date string
@@ -223,7 +225,7 @@ export interface PostType {
 
 
   export interface PostFormData {
-    thumbnail: un,
+    thumbnail: unknown,
     title: string,
     description: string,
     tag: string[],

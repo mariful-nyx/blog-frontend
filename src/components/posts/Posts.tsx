@@ -6,6 +6,7 @@ import Image from "next/image";
 import noImg from "@/assets/images/noImage.jpg"
 
 function Posts({ data }: { data: PostListResponse }) {
+
   return (
     <div className="">
       <div className="">
@@ -15,8 +16,8 @@ function Posts({ data }: { data: PostListResponse }) {
               <Link href={`/posts/${post.slug}`}>
                 {post?.thumbnail ? 
                   <img
-                    src={post?.thumbnail}
-                    alt={post?.thumbnail.split("/").at(-1) || ""}
+                    src={post?.thumbnail_img}
+                    alt={post?.thumbnail_img.split("/").at(-1) || ""}
                     className="aspect-video object-cover h-[200px]"
                   />
                   :

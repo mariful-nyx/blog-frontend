@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { LuPen } from 'react-icons/lu'
 import { toast } from 'react-toastify'
+import Cookies from 'js-cookie'
+
 
 function InfoEdit({user}: {user: UserDetailType}) {
   const { isAuthenticated } = useAuth()
@@ -64,7 +66,7 @@ function InfoEdit({user}: {user: UserDetailType}) {
 
   return (
     <div className='flex justify-center'>
-      {isAuthenticated && (
+      {isAuthenticated && user?.username === Cookies.get('bpmUsername')  && (
         <>
         <button
           onClick={()=>setIsOpen(!isOpen)}

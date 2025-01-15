@@ -35,6 +35,8 @@ function Login() {
       Cookies.set('bpmRefreshToken', data.refresh)
       Cookies.set('bpmUsername', data.user.username)
       Cookies.set('bpmUserEmail', data.user.email)
+      Cookies.set('bpmUserID', data.user.id)
+
       router.replace(`/`)
       router.refresh()
 
@@ -103,7 +105,7 @@ function Login() {
           </div>
           
         </div>
-        <div className='w-[50%] bg-blue-500'>
+        <div className='w-[50%] h-screen bg-blue-500'>
           ui portion
         </div>
       </div>

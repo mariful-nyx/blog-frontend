@@ -39,7 +39,7 @@ async function Author({searchParams}: {searchParams: AuthorParams}) {
                   </div>
                   <div>
                   {user.avater ? 
-                    <img 
+                    <img
                       src={user.avater} 
                       alt='' 
                       className='h-16 w-16 aspect-square rounded-full object-cover '
@@ -48,6 +48,7 @@ async function Author({searchParams}: {searchParams: AuthorParams}) {
                       src={userImg} 
                       alt='' 
                       className='h-16 w-16 aspect-square rounded-full object-cover dark:mix-blend-overlay'
+                     
                     />
                   
                   }

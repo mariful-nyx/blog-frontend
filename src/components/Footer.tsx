@@ -1,11 +1,12 @@
 import Link from "next/link";
 import React from "react";
+import { serviceItems } from "./ServiceItems";
 
 function Footer() {
   return (
     <div className="bg-black text-white">
       <div className="max-w-[1180px] mx-auto mt-20 ">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 h-[40vh] px-10 py-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 px-10 py-12">
           <div className="text-slate-500">
             This is a product base blog site where you get detail description of
             a product that help you to buy correct product.
@@ -27,10 +28,17 @@ function Footer() {
           <div className="flex flex-col">
             <h2 className="text-blue-600">Service</h2>
             <div className="mt-2 flex flex-col gap-1 text-slate-500">
-              <Link href={``} className="hover:text-white duration-200">Custom software development</Link>
-              <Link href={``} className="hover:text-white duration-200">GIS development</Link>
-              <Link href={``} className="hover:text-white duration-200">Data Engineering</Link>
-              <Link href={``} className="hover:text-white duration-200">Cloud Computing</Link>
+              {serviceItems.map((item, index)=>(
+                <Link 
+                  key={index}
+                  href={`https://predien.vercel.app/services/${item.link}`} 
+                  target="_blank" className="hover:text-white duration-200"
+                >
+                  {item.name}
+                </Link>
+              ))}
+              
+              
             </div>
           </div>
           <div className="flex flex-col">

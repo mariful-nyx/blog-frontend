@@ -46,6 +46,7 @@ const Slider = () => {
             src={image}
             alt={`Slide ${index + 1}`}
             className="w-full object-cover flex-shrink-0 h-[50vh]"
+
           />
         ))}
       </div>

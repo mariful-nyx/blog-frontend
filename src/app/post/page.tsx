@@ -42,15 +42,17 @@ async function Post({searchParams}: {searchParams: PostParams}) {
                             <div className='flex gap-4'>
                               {post.thumbnail ? 
                                 <img
-                                  src={post.thumbnail}
+                                  src={post.thumbnail_img}
                                   alt=''
                                   className='h-[150px] w-[200px] object-cover'
+                                  
                                 />
                                 :
                                 <Image
                                   src={noImage}
                                   alt=''
                                   className='h-[150px] w-[200px] object-cover dark:mix-blend-overlay'
+                                  
                                 />
                               }
                               <div 

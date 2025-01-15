@@ -19,12 +19,12 @@ interface Post {
 
 interface PostsType {
     posts: Post[];
-    isLoaded: boolean;
+    isPostsLoaded: boolean;
 }
 
 const initialState: PostsType = {
     posts: [],
-    isLoaded: false
+    isPostsLoaded: false
 }
 
 
@@ -34,7 +34,7 @@ const postsSlice = createSlice({
     reducers: {
         setPosts: (state, action) => {
             state.posts = action.payload
-            state.isLoaded = true
+            state.isPostsLoaded = true
         }
     }
 })
@@ -46,7 +46,7 @@ export const { setPosts } = postsSlice.actions
 export const fetchPosts = () => async (dispatch:AppDispatch) => {
     const api = useApi()
     try {
-        const response = await api.posts()
+        const response = await api.posts({all_items:true})
         dispatch(setPosts(response.data))
     } catch {
         console.log('Error fetch posts.')
