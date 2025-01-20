@@ -16,6 +16,7 @@ async function Post({searchParams}: {searchParams: PostParams}) {
 
   const posts:PostListResponse = await GetPosts(searchParams)
 
+
   return (
     <>
         <div className='max-w-[1180px] mx-auto mt-8 px-4 lg:px-10'>
@@ -32,7 +33,7 @@ async function Post({searchParams}: {searchParams: PostParams}) {
                         
                     </div>
                     <div className='w-full md:w-[70%] flex flex-col gap-4'>
-                      {posts.results.map((post, index) => (
+                      {posts?.results.map((post, index) => (
                         <Link href={`/posts/${post.slug}`} key={index} legacyBehavior>
                           <div className="rounded-md shadow-md hover:shadow-lg duration-200 group w-full bg-white dark:bg-gray-800">
                             <div className="flex flex-col sm:flex-row gap-0 sm:gap-4">
