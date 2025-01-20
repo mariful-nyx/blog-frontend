@@ -18,13 +18,13 @@ function Posts({ data }: { data: PostListResponse }) {
                   <img
                     src={post?.thumbnail_img}
                     alt={post?.thumbnail_img.split("/").at(-1) || ""}
-                    className="aspect-video object-cover h-[200px]"
+                    className="object-cover h-[200px] w-full overflow-hidden"
                   />
                   :
                 <Image
                   src={noImg}
                   alt=""
-                  className="aspect-video object-cover h-[200px] dark:mix-blend-overlay"
+                  className=" object-cover h-[200px] dark:mix-blend-overlay min-w-0"
                 />
                 }
               </Link>
