@@ -22,8 +22,8 @@ async function Profile({params}:{params:{slug:string}}) {
         <label htmlFor="profile-pic" className="relative group">
           {user?.avater ? (
             <img
-              src={user?.avater}
-              alt={user?.avater.split("/").at(-1) || ""}
+              src={user?.avatar_preview}
+              alt={user?.avatar_preview.split("/").at(-1) || ""}
               className="h-[200px] w-[200px] object-cover rounded-full group-hover:mix-blend-darken"
               
             />

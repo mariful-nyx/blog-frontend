@@ -3,15 +3,12 @@ import Slider from "@/components/Home/Slider";
 import Categories from "@/components/NestedCategory";
 import Posts from "@/components/posts/Posts";
 import TopAuthor from "@/components/Home/TopAuthor";
-import useApi from "@/api/api";
 import { MoreOptionButton } from "@/components/button";
-import { GetCategories, GetUsers } from "@/api/data";
+import { GetCategories, GetPosts, GetUsers } from "@/api/data";
 
 export default async function Home() {
-  const api = useApi()
 
-  const response = await api.posts({ordering: '-created_at'})
-  const data = await response.data
+  const data = await GetPosts({ordering: '-created_at'})
 
   const userData = await GetUsers()
 

@@ -12,17 +12,19 @@ function ProfilePic({user}: {user:UserDetailType}) {
 
   const onChangeProfilePic = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      api
-        .updateProfile(slug as string, {
+      api.createImage({image: e.target.files[0], image_alt_text: e.target.name}).then((response)=>{
+        api.updateProfile(slug as string, {
           email: user?.email as string,
           username: user?.username as string,
-          avater: e.target.files[0] as File,
+          avater: response.data.id,
         })
         .then(() => {
           router.refresh()
           toast.success('Successfully updated profile picture.')
           
         }).catch(()=>toast.error('Error updating profile photo!!!'))
+      }).catch(()=>console.log('Error update image failed.'))
+      
     }
   };
 

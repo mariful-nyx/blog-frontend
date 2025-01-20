@@ -148,6 +148,7 @@ export interface PostType {
     first_name: string;
     last_name: string;
     avater: string;
+    avatar_preview: string;
     password: string;
     is_staff: boolean;
     is_active: boolean;
