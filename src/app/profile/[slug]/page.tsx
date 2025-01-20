@@ -46,8 +46,8 @@ async function Profile({params}:{params:{slug:string}}) {
             
           </div>
         </div>
-        <div className='flex mt-12 w-full'>
-          <div className='w-[30%] mr-4'>
+        <div className='flex flex-col md:flex-row items-center  mt-12 w-full'>
+          <div className='w-full md:w-[30%] mx-4'>
             <div>
               <div className=' flex gap-4 items-center'>
                 <strong className='text-green-500'>Status</strong>
@@ -77,54 +77,51 @@ async function Profile({params}:{params:{slug:string}}) {
             </div>
 
           </div>
-          <div className='w-[70%] ml-4'>
+          <div className='w-full md:w-[70%] ml-4 mr-4 md:mr-0'>
             <div>
               <h2 className='text-green-500'>Posts</h2>
               <div className='flex flex-col gap-4 mt-4'>
                 {user?.posts?.length ? 
-                  user?.posts.map((post, index)=>(
-                  <Link
-                    href={`/posts/${post.slug}`}
-                    key={index}
-                    className='h-[150px] rounded-md shadow-md hover:shadow-lg duration-200 group w-full bg-white dark:bg-gray-800'
-                  >
-                    <div className='flex gap-4'>
-                      {post.thumbnail ? 
-                        <img
-                          src={post?.thumbnail}
-                          alt=''
-                          className='h-[150px] w-[200px] object-cover'
-                       
-                        />
-                        :
-                        <Image
-                          src={noImg}
-                          alt=''
-                          className='h-[150px] w-[200px] object-cover dark:mix-blend-overlay'
-                         
-                        />
-                      }
-                      <div 
-                        className='w-full mt-2 mr-4 mb-2'
-                      >
-                        <div
-                          className='text-xl group-hover:text-green-500 duration-200'
-                        >
-                          {post.title}
-                        </div>
-                        <div
-                          className='text-sm text-slate-500'
-                        >
-                          By <Link href={`/profile/${post.posted_by}`} className='text-green-500 hover:text-green-700 duration-200'>{post.posted_by}</Link>
-                        </div>
-                        
-                        <div className='text-slate-400 line-clamp-2 mt-3 w-full'>
-                          {post.description}
+                  user.posts.map((post, index) => (
+                    <Link href={`/posts/${post.slug}`} key={index} legacyBehavior>
+                      <div className="rounded-md shadow-md hover:shadow-lg duration-200 group w-full bg-white dark:bg-gray-800">
+                        <div className="flex flex-col sm:flex-row gap-0 sm:gap-4">
+                          {post.thumbnail ? (
+                            <img
+                              src={post.thumbnail_img}
+                              alt=""
+                              className="h-[150px] w-full sm:w-[200px] object-cover"
+                            />
+                          ) : (
+                            <Image
+                              src={noImg}
+                              alt=""
+                              className="h-[150px] w-[200px] object-cover dark:mix-blend-overlay"
+                            />
+                          )}
+                          <div className="w-full mt-2 mr-4 mb-2 p-4 sm:p-0">
+                            <div className="text-xl group-hover:text-green-500 duration-200">
+                              {post.title}
+                            </div>
+                            <div className="text-sm text-slate-500">
+                              By{" "}
+                              <Link
+                                href={`/profile/${post.posted_by}`}
+                                className="text-green-500 hover:text-green-700 duration-200"
+                              >
+                                {post.posted_by}
+                              </Link>
+                            </div>
+
+                            <div className="text-slate-400 line-clamp-2 mt-3 w-full">
+                              <div dangerouslySetInnerHTML={{ __html: post.description }} />
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                )):
+                    </Link>
+                  ))
+                  :
                 <div className='text-lg text-center w-full text-slate-500 dark:text-slate-300'>No post yet...</div>
               
               }

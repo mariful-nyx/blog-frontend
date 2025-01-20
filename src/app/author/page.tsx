@@ -16,16 +16,16 @@ interface AuthorParams {
 async function Author({searchParams}: {searchParams: AuthorParams}) {
   const users = await GetUsers(searchParams)
   return (
-    <div className='max-w-[1180px] mx-auto'>
-      <div className='px-4 lg:px-10'>
-        <div className='mt-12'>
+    <div className='max-w-[1180px] mx-auto w-full'>
+      <div className='px-4 lg:px-10 w-full'>
+        <div className='mt-12 w-full'>
           <SearchComponent/>
         </div>
         <div className='flex mt-12'>
-          <div className='w-[30%]'>
+          <div className='w-0 overflow-hidden opacity-0 md:w-[30%]'>
             filter
           </div>
-          <div className='w-[70%]'>
+          <div className='w-full md:w-[70%]'>
             <div className='flex flex-col gap-4'>
               {users?.results.map((user:User, index:number)=>(
                 <Link
@@ -40,9 +40,9 @@ async function Author({searchParams}: {searchParams: AuthorParams}) {
                   <div>
                   {user.avater ? 
                     <img
-                      src={user.avater} 
+                      src={user.avatar_preview} 
                       alt='' 
-                      className='h-16 w-16 aspect-square rounded-full object-cover '
+                      className='h-16 min-w-16 w-16 aspect-square rounded-full object-cover '
                     />:
                     <Image 
                       src={userImg} 
@@ -61,7 +61,7 @@ async function Author({searchParams}: {searchParams: AuthorParams}) {
                       {user.first_name} {user.last_name}
                     </div>
                     <div
-                      className='text-gray-400 text-sm flex gap-3'
+                      className='text-gray-400 text-sm flex flex-col sm:flex-row flex-wrap gap-3 box-border'
                     >
                       <div>{user.username}</div>
                       <div>

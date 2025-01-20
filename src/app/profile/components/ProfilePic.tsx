@@ -12,7 +12,7 @@ function ProfilePic({user}: {user:UserDetailType}) {
 
   const onChangeProfilePic = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      api.createImage({image: e.target.files[0], image_alt_text: e.target.name}).then((response)=>{
+      api.createImage({image: e.target.files[0], image_alt_text: e.target.name || 'abc'}).then((response)=>{
         api.updateProfile(slug as string, {
           email: user?.email as string,
           username: user?.username as string,

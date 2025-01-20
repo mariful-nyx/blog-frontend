@@ -5,6 +5,43 @@ import Posts from "@/components/posts/Posts";
 import TopAuthor from "@/components/Home/TopAuthor";
 import { MoreOptionButton } from "@/components/button";
 import { GetCategories, GetPosts, GetUsers } from "@/api/data";
+import { Metadata } from "next";
+
+
+const baseUrl = process.env.BASE_URL
+
+
+export async function generateMetadata(): Promise<Metadata> {
+
+  return {
+    title: 'Predien - Programming blog for developers and clients',
+    description: "Predien team research for new invention and problem solving. We don't work not only for personal benefit but aslo all over benefit.",
+    alternates: {
+      canonical: `${baseUrl}/`
+    },
+
+    openGraph: {
+      title: 'Predien - Programming blog for developers and clients',
+      description: "Predien team research for new invention and problem solving. We don't work not only for personal benefit but aslo all over benefit.",
+      url: `${baseUrl}/`, // Using dynamic canonical URL
+      images: '',
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Predien - Programming blog for developers and clients",
+      description: "Predien team research for new invention and problem solving. We don't work not only for personal benefit but aslo all over benefit.",
+      images: "/",
+    },
+    icons: {
+      icon: "/faviconUrl", // Dynamically set favicon
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
+
 
 export default async function Home() {
 

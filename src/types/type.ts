@@ -174,6 +174,7 @@ export interface PostType {
     first_name: string;
     last_name: string;
     avater: string | null;
+    avatar_preview: string;
     date_joined: string;
     role: 'GENERAL' | 'MODERATOR' | 'ADMIN'; // You can expand the role options as needed
     status: string;

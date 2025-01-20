@@ -56,7 +56,7 @@ async function PostView({ params }: { params: { slug: string } }) {
     <>
       <div className="max-w-[1180px] mx-auto">
         <div className="flex mb-24 mt-12">
-          <div className="px-6 w-[70%] border-r">
+          <div className="px-6 w-full md:w-[70%] border-r">
 
             <div className="text-5xl font-extralight">{post?.title}</div>
             <div className="flex justify-between mb-10 mt-2">
@@ -87,7 +87,7 @@ async function PostView({ params }: { params: { slug: string } }) {
             </div>
           </div>
 
-          <div className="w-[30%] px-6 sticky" >
+          <div className=" hidden md:block md:w-[30%] px-6 sticky" >
             <div>
               <h2 className="text-gray-600 dark:text-slate-500">Contents</h2>
               <div className="mt-2 flex flex-col gap-2">

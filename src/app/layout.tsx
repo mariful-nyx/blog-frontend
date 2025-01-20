@@ -34,6 +34,23 @@ export default function RootLayout({
   
   return (
     <html lang="en">
+       <head>
+        {/* Google Tag Manager script */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-KL01DQ6W4J"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-KL01DQ6W4J');
+            `,
+          }}
+        />
+      </head>
 
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-black bg-white dark:text-white text-black`}

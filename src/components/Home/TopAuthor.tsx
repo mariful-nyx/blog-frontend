@@ -23,8 +23,8 @@ function TopAuthor({data}: {data: PaginatedUsers}) {
               </div>
               {author?.avater ? 
                   <img
-                    src={author.avater}
-                    alt={author?.avater?.split("/").at(-1) || ""}
+                    src={author.avatar_preview}
+                    alt={author?.avatar_preview?.split("/").at(-1) || ""}
                     className="h-[100px] w-[100px] aspect-square rounded-full object-cover mb-3"
                    
                   />

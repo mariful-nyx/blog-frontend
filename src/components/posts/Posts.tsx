@@ -35,7 +35,9 @@ function Posts({ data }: { data: PostListResponse }) {
                 >
                   {post.title}
                 </Link>
-                <p className="mt-1 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">{post.description}</p>
+                <p className="mt-1 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
+                  <div dangerouslySetInnerHTML={{ __html: post.description}} />
+                </p>
                 <div className="flex justify-between items-center gap-4 mt-4">
                   <Link
                     href={`/profile/${post.posted_by}`}
