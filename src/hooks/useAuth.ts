@@ -17,7 +17,7 @@ const useAuth = () => {
   useEffect(() => {
     // Define the function you want to call periodically
     const periodicFunction = () => {
-      console.log('Function called every 5 minutes!');
+      
     };
 
     // Set the interval to call the function every 5 minutes (300,000 ms)

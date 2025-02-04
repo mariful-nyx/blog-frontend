@@ -1,12 +1,15 @@
 import React from 'react'
-import SearchComponent from '../post/component/Search'
 import { GetUsers } from '@/api/data';
-import Paginator from '@/components/paginator';
 import { User } from '@/types/type';
 import userImg from '@/assets/images/user.webp'
 import Image from 'next/image';
 import RoleBadge from '@/components/badge/RoleBadge';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+const SearchComponent = dynamic(()=>import('@/app/post/component/Search'), {ssr: false})
+const Paginator = dynamic(()=>import('@/components/paginator'), {ssr: false})
+
 
 interface AuthorParams {
   page: string;
@@ -27,7 +30,7 @@ async function Author({searchParams}: {searchParams: AuthorParams}) {
           </div>
           <div className='w-full md:w-[70%]'>
             <div className='flex flex-col gap-4'>
-              {users?.results.map((user:User, index:number)=>(
+              {users?.results?.map((user:User, index:number)=>(
                 <Link
                   href={`/profile/${user.username}`} 
                   key={index}
@@ -56,7 +59,7 @@ async function Author({searchParams}: {searchParams: AuthorParams}) {
                   </div>
                   <div>
                     <div 
-                      className='text-slate-600 dark:text-slate-400 font-bold text-lg group-hover:text-blue-500 duration-200'
+                      className='cursor-pointer text-slate-600 dark:text-slate-400 font-bold text-lg group-hover:text-blue-500 duration-200'
                     >
                       {user.first_name} {user.last_name}
                     </div>

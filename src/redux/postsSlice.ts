@@ -1,6 +1,7 @@
 import useApi from "@/api/api";
 import { createSlice } from "@reduxjs/toolkit";
 import { AppDispatch } from "./store";
+import { toast } from "react-toastify";
 
 interface Post {
     id: number;
@@ -49,7 +50,7 @@ export const fetchPosts = () => async (dispatch:AppDispatch) => {
         const response = await api.posts({all_items:true})
         dispatch(setPosts(response.data))
     } catch {
-        console.log('Error fetch posts.')
+        toast.error('Error fetch posts.')
     }
 }
 

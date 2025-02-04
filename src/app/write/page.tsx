@@ -16,17 +16,23 @@ import Cookies from "js-cookie";
 import { RxCross1 } from "react-icons/rx";
 import { fetchTags } from "@/redux/tagSlice";
 import { fetchPosts } from "@/redux/postsSlice";
-
+import SlateEditor from '@/components/SlateEditor'
+import Link from "next/link";
 
 interface OptionType {
   label: string;
   value: number;
 }
 
+
 function Write() {
   const api = useApi()
   const dispatch = useAppDispatch()
   const router = useRouter()
+
+  const [image, setImage] = useState<File | null>(null)
+
+
   const [formData, setFormData] = useState({
     thumbnail: null,
     thumbnailPreview: '',
@@ -74,6 +80,8 @@ function Write() {
     const { files } = e.target as HTMLInputElement
     
     if(files && files[0]) {
+      setImage(files[0])
+
       api.createImage({image: files[0] || '', image_alt_text:  files[0].name || `image`}).then((response)=>{
         
         setFormData((prev)=>({
@@ -81,6 +89,7 @@ function Write() {
           thumbnail: response.data?.id,
           thumbnailPreview: response.data?.image
         }))
+        toast.success('Image uploaded successfully.')
       }).catch(()=>toast.error('Image upload failed !'))
       
     }
@@ -125,9 +134,8 @@ function Write() {
       'related_article': relatedPosts as [],
     }))
   }
+  
 
-
-  console.log(formData, "======")
 
 
   return (
@@ -135,9 +143,9 @@ function Write() {
       <form className="flex flex-col gap-3">
           <div className="flex flex-col gap-2">
             <label htmlFor="thumbnail" className="text-sm text-slate-600">
-              {formData?.thumbnail ? 
+              { image ? 
                 <img
-                  src={formData?.thumbnailPreview}
+                  src={URL.createObjectURL(image)}
                   alt=""
                   className="h-[200px] w-[300px] object-cover"
                  
@@ -177,15 +185,16 @@ function Write() {
             <label htmlFor="description" className="text-sm text-slate-600">
               Description
             </label>
-            <input
-              id="description"
-              name="description"
-              type="text"
-              value={formData?.description}
-              onChange={handleChange}
-              className="text-slate-600 dark:text-slate-300 dark:bg-gray-800 w-full px-4 py-2 rounded-md border outline-none focus:outline-none  focus:outline-blue-600 duration-200"
-              placeholder="Description"
+
+            <SlateEditor 
+              onChange={(value:any)=>{
+                setFormData((prev)=>({
+                  ...prev,
+                  'description': JSON.stringify(value)
+                }))
+              }}
             />
+
           </div>
 
           <div className="flex flex-col gap-2">
@@ -281,10 +290,17 @@ function Write() {
 
           </div>
 
-          <div className="flex flex-col gap-2 mt-3">
+          <div className="flex flex-row gap-2 mt-3 justify-end">
+            <Link
+              href="/"
+              className='border border-red-500 w-fit text-red-500  hover:bg-red-500 hover:text-white py-2 px-6 duration-200 font-bold'
+
+            >
+              Cancel
+            </Link>
             <button
               onClick={handlePostCreate}
-              className='bg-green-600 w-fit text-white rounded-md hover:bg-green-800 py-1 px-4 duration-200 font-bold'
+              className='bg-green-500 w-fit border border-green-500 text-white hover:bg-green-600 py-2 px-6 duration-200 font-bold'
 
             >
               Create

@@ -1,10 +1,12 @@
 import { GetPosts } from '@/api/data'
-import Paginator from '@/components/paginator'
 import {  PostListResponse } from '@/types/type'
-import SearchComponent from './component/Search';
 import Link from 'next/link';
 import Image from 'next/image';
 import noImage from '@/assets/images/noImage.jpg'
+import dynamic from 'next/dynamic';
+
+const SearchComponent = dynamic(()=>import('./component/Search'), {ssr: false})
+const Paginator = dynamic(()=>import('@/components/paginator'), {ssr: false})
 
 
 interface PostParams {
@@ -33,11 +35,12 @@ async function Post({searchParams}: {searchParams: PostParams}) {
                         
                     </div>
                     <div className='w-full md:w-[70%] flex flex-col gap-4'>
-                      {posts?.results.map((post, index) => (
-                        <Link href={`/posts/${post.slug}`} key={index} legacyBehavior>
+                      {posts &&
+                        posts?.results?.map((post, index) => (
+                        <Link href={`/posts/${post?.slug}`} key={index} legacyBehavior>
                           <div className="rounded-md shadow-md hover:shadow-lg duration-200 group w-full bg-white dark:bg-gray-800">
                             <div className="flex flex-col sm:flex-row gap-0 sm:gap-4">
-                              {post.thumbnail ? (
+                              {post?.thumbnail ? (
                                 <img
                                   src={post.thumbnail_img}
                                   alt=""
@@ -51,21 +54,35 @@ async function Post({searchParams}: {searchParams: PostParams}) {
                                 />
                               )}
                               <div className="w-full mt-2 mr-4 mb-2 p-4 sm:p-0">
-                                <div className="text-xl group-hover:text-green-500 duration-200">
-                                  {post.title}
+                                <div className="text-xl group-hover:text-green-500 duration-200 cursor-pointer">
+                                  {post?.title}
                                 </div>
                                 <div className="text-sm text-slate-500">
                                   By{" "}
                                   <Link
-                                    href={`/profile/${post.posted_by}`}
+                                    href={`/profile/${post?.posted_by}`}
                                     className="text-green-500 hover:text-green-700 duration-200"
                                   >
-                                    {post.posted_by}
+                                    {post?.posted_by}
                                   </Link>
                                 </div>
 
                                 <div className="text-slate-400 line-clamp-2 mt-3 w-full">
-                                  <div dangerouslySetInnerHTML={{ __html: post.description }} />
+                                {
+                                  JSON.parse(post?.description)?.map((item:any, index:number)=>(
+                                    <div key={index}>
+                                      {item.type === "paragraph" && (
+                                        <div className={``}>
+                                          {item.children?.map((item:any, index:number)=>(
+                                            <div key={index}>
+                                              {item?.text}
+                                            
+                                            </div>
+                                          ))}  
+                                        </div>
+                                      )}
+                                    </div>))
+                                }
                                 </div>
                               </div>
                             </div>

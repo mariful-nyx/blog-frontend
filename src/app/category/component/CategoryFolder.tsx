@@ -26,7 +26,7 @@ function CategoryFolder({category}: {category:string}) {
           if (subcate.subsubcategories){
             for (const subsubcate of subcate.subsubcategories){
               if (subsubcate.name.toLowerCase() === targetName.toLowerCase()){
-                console.log(category.name, subcate.name, subsubcate.name)
+                
                 return [category.name, subcate.name, subsubcate.name]
               }
             }

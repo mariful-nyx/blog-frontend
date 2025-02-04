@@ -42,3 +42,22 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   text-overflow: ellipsis; /* Add the ellipsis (...) */
 }
+
+
+ul {
+  list-style: revert;
+}
+
+ol {
+  list-style: revert;
+}
+
+blockquote {
+  background-color: revert;
+  font-family: revert;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}

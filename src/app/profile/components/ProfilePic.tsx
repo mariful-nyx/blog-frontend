@@ -23,7 +23,7 @@ function ProfilePic({user}: {user:UserDetailType}) {
           toast.success('Successfully updated profile picture.')
           
         }).catch(()=>toast.error('Error updating profile photo!!!'))
-      }).catch(()=>console.log('Error update image failed.'))
+      }).catch(()=>toast.error('Error update image failed.'))
       
     }
   };

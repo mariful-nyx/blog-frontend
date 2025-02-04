@@ -2,6 +2,7 @@ import useApi from "@/api/api";
 import { createSlice } from "@reduxjs/toolkit";
 import { AppDispatch } from "./store";
 import { Categories } from "@/types/type";
+import { toast } from "react-toastify";
 
 
 interface CategoryTypes {
@@ -34,7 +35,7 @@ export const fetchCategories = () => async (dispatch:AppDispatch) => {
         const data = await response.data
         dispatch(setCategories(data))
     } catch {
-        console.log('Error fetching categories.')
+        toast.error('Error fetching categories.')
     }
 }
 

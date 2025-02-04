@@ -27,7 +27,7 @@ function NavBar() {
           dispatch(setAccessToken(data.access))
 
         }catch{
-          console.log('Error getting access....')
+          
         }
     }
     getRefresh()
@@ -51,7 +51,7 @@ function NavBar() {
           <h2><Link href={`/`}>predien blog</Link> </h2>
         </div>
         <div>
-          <ul className="flex gap-6 font-bold">
+          <ul className="flex gap-6 font-bold list-none">
             <li><Link href={`/author`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">author</Link></li>
             <li><Link href={`/post`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">post</Link></li>
             <li><Link href={`/news`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">news</Link></li>
@@ -95,7 +95,7 @@ function NavBar() {
             <RxCross1 className='text-black dark:text-white hover:text-gray-500 w-6 h-6'/>
           </button>
           <div className='overflow-hidden'>
-            <ul className="flex flex-col gap-6 font-bold">
+            <ul className="flex flex-col gap-6 font-bold list-none">
               <li><Link href={`/author`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">author</Link></li>
               <li><Link href={`/post`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">post</Link></li>
               <li><Link href={`/news`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">news</Link></li>

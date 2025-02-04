@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import useApi from "./api";
 
 async function Post(slug: string){
@@ -5,12 +6,14 @@ async function Post(slug: string){
 
     try {
         const response = await api.post(slug)
-        const data = response.data
-
+        const data = await response.data
+        if (!data) {
+            return { notFound: true };
+          }
         return data
 
     } catch {
-        console.log("Error fetch post")
+        toast.error("Error fetch post")
     }
 }
 
@@ -20,12 +23,14 @@ async function GetPosts(params?:object) {
 
     try {
         const response = await api.posts(params)
-        const data = response.data
-
+        const data = await response.data
+        if (!data) {
+            return { notFound: true };
+          }
         return data
 
     } catch {
-        console.log("Error fetch posts")
+        toast.error("Error fetch posts")
     }
 }
 
@@ -34,12 +39,14 @@ async function GetUsers(params?:object) {
 
     try {
         const response = await api.getUsers(params)
-        const data = response.data
-
+        const data = await response.data
+        if (!data) {
+            return { notFound: true };
+          }
         return data
 
     } catch {
-        console.log("Error fetch users")
+        toast.error("Error fetch users")
     }
 }
 
@@ -48,12 +55,14 @@ async function GetUserDetail(username: string) {
 
     try {
         const response = await api.getUserDetail(username)
-        const data = response.data
-
+        const data = await response.data
+        if (!data) {
+            return { notFound: true };
+          }
         return data
 
     } catch {
-        console.log("Error fetch users")
+        toast.error("Error fetch users")
     }
 }
 
@@ -63,12 +72,14 @@ async function GetCategories() {
 
     try {
         const response = await api.getCategories()
-        const data = response.data
-
+        const data = await response.data
+        if (!data) {
+            return { notFound: true };
+          }
         return data
 
     } catch {
-        console.log("Error fetch Categories")
+        toast.error("Error fetch Categories")
     }
 }
 

@@ -100,9 +100,10 @@ async function Profile({params}:{params:{slug:string}}) {
                             />
                           )}
                           <div className="w-full mt-2 mr-4 mb-2 p-4 sm:p-0">
-                            <div className="text-xl group-hover:text-green-500 duration-200">
-                              {post.title}
+                            <div className="text-xl group-hover:text-green-500 duration-200 cursor-pointer">
+                              {post.title} 
                             </div>
+                            <Link href={`/edit/${post?.slug}`} className='text-green-500 text-sm hover:underline'>Edit</Link>
                             <div className="text-sm text-slate-500">
                               By{" "}
                               <Link
@@ -114,7 +115,21 @@ async function Profile({params}:{params:{slug:string}}) {
                             </div>
 
                             <div className="text-slate-400 line-clamp-2 mt-3 w-full">
-                              <div dangerouslySetInnerHTML={{ __html: post.description }} />
+                              {
+                                JSON.parse(post.description)?.map((item:any, index:number)=>(
+                                  <div key={index}>
+                                    {item.type === "paragraph" && (
+                                      <div className={``}>
+                                        {item.children?.map((item:any, index:number)=>(
+                                          <div key={index}>
+                                            {item?.text}
+                                          
+                                          </div>
+                                        ))}  
+                                      </div>
+                                    )}
+                                  </div>))
+                                }
                             </div>
                           </div>
                         </div>

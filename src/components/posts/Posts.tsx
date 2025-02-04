@@ -36,7 +36,21 @@ function Posts({ data }: { data: PostListResponse }) {
                   {post.title}
                 </Link>
                 <p className="mt-1 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
-                  <div dangerouslySetInnerHTML={{ __html: post.description}} />
+                  {
+                    JSON.parse(post.description)?.map((item:any, index:number)=>(
+                      <div key={index}>
+                        {item.type === "paragraph" && (
+                          <div className={``}>
+                            {item.children?.map((item:any, index:number)=>(
+                              <div key={index}>
+                                {item?.text}
+                              
+                              </div>
+                            ))}  
+                          </div>
+                        )}
+                      </div>))
+                  }
                 </p>
                 <div className="flex justify-between items-center gap-4 mt-4">
                   <Link

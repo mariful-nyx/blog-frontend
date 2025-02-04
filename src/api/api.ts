@@ -41,7 +41,7 @@ const useApi = () => {
         login: (data: LoginFormData) => interceptor.post(`/bpm/user/api/v1/login/`, data),
         signup: (data: unknown) => interceptor.post(`/bpm/user/api/v1/signup/`, data),
 
-        getAccessToken: (data: Refresh) => interceptor.post(`/bpm/user/api/v1//token/refresh/`, data),
+        getAccessToken: (data: Refresh) => interceptor.post(`/bpm/user/api/v1/token/refresh/`, data),
         isAuthenticate: (token:string) => {
             const headers = {
                 Authorization: `Bearer ${token}`,

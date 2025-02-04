@@ -42,10 +42,8 @@ function Login() {
 
     } catch(error) {
       if (isAxiosError(error)) {
-        console.log(error);
         toast.error(error.response?.data?.error);
       } else {
-        console.log(error);
         toast.error("An unknown error occurred");
       }
     }
