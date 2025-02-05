@@ -6,7 +6,7 @@ import Link from "next/link";
 import { PostType, RelatedArticle, Tag } from "@/types/type";
 
 
-const baseUrl = process.env.BASE_URL
+const baseUrl = "https://predienblog.vercel.app"
 
 
 
