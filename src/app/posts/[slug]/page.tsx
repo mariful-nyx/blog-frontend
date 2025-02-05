@@ -18,26 +18,23 @@ export async function generateMetadata({
   const post = await Post(params.slug);
 
   return {
-    title: post?.title,
-    description: post?.description,
+    title: post?.meta_title,
+    description: post?.meta_description,
     alternates: {
       canonical: `${baseUrl}/posts/${post?.slug}`
     },
 
     openGraph: {
-      title: post?.title,
-      description: post?.description,
+      title: post?.meta_title,
+      description: post?.meta_description,
       url: `${baseUrl}/posts/${post?.slug}`, // Using dynamic canonical URL
       images: [{ url: post?.thumbnail_img }],
     },
     twitter: {
       card: "summary_large_image",
-      title: post?.title,
-      description: post?.description,
+      title: post?.meta_title,
+      description: post?.meta_description,
       images: post?.thumbnail_img,
-    },
-    icons: {
-      icon: "/faviconUrl", // Dynamically set favicon
     },
     robots: {
       index: true,
@@ -72,7 +69,7 @@ async function PostView({ params }: { params: { slug: string } }) {
             </div>
             <div>
 
-              {
+              {post.description &&
                 JSON.parse(post.description)?.map((item:any, index:number)=>(
                   <div key={index}>
                     {item.type === "paragraph" && (
@@ -158,7 +155,8 @@ async function PostView({ params }: { params: { slug: string } }) {
             <div>
               <h2 className="text-gray-600 dark:text-slate-200">Contents</h2>
               <div className="mt-2 flex flex-col gap-1">
-                { JSON.parse(post.description)?.map((item:any, index:number)=>(
+                {post?.description &&
+                  JSON.parse(post.description)?.map((item:any, index:number)=>(
                   <div key={index}>
                     {item.type === "heading-one" &&
                       <Link href={`#head-${index+1}`} role="button" key={index} className="text-sm font-semibold hover:underline">

@@ -8,7 +8,7 @@ import { GetCategories, GetPosts, GetUsers } from "@/api/data";
 import { Metadata } from "next";
 
 
-const baseUrl = process.env.BASE_URL
+const baseUrl = "https://predienblog.vercel.app"
 
 
 export async function generateMetadata(): Promise<Metadata> {
