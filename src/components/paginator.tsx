@@ -52,9 +52,9 @@ function Paginator({data}:PaginatorType) {
       </div>
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm text-gray-700">
+          <div className="text-sm text-gray-700">
             Total <span className="font-medium"> {data?.count}</span> results
-          </p>
+          </div>
         </div>
         <div>
           <nav aria-label="Pagination" className="isolate inline-flex -space-x-px rounded-md shadow-sm">

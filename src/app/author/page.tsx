@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { Suspense, useEffect, useState } from 'react'
 import { GetUsers } from '@/api/data';
 import { User } from '@/types/type';
 import userImg from '@/assets/images/user.webp'
@@ -6,9 +7,13 @@ import Image from 'next/image';
 import RoleBadge from '@/components/badge/RoleBadge';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import useApi from '@/api/api';
+import { toast } from 'react-toastify';
+import SearchComponent from '../post/component/Search';
+import Paginator from '@/components/paginator';
 
-const SearchComponent = dynamic(()=>import('@/app/post/component/Search'), {ssr: false})
-const Paginator = dynamic(()=>import('@/components/paginator'), {ssr: false})
+// const SearchComponent = dynamic(()=>import('@/app/post/component/Search'), {ssr: false})
+// const Paginator = dynamic(()=>import('@/components/paginator'), {ssr: false})
 
 
 interface AuthorParams {
@@ -16,14 +21,23 @@ interface AuthorParams {
   search: string;
 }
 
-async function Author({searchParams}: {searchParams: AuthorParams}) {
-  const users = await GetUsers(searchParams)
+function Author({searchParams}: {searchParams: AuthorParams}) {
+  const api = useApi()
+  const [users, setUsers] = useState<any>()
+
+  useEffect(()=>{
+    api.getUsers(searchParams).then((response)=>{
+      setUsers(response.data)
+    }).catch(()=>toast.error('Error fetch authors !'))
+  },[searchParams])
+
   return (
     <div className='max-w-[1180px] mx-auto w-full'>
       <div className='px-4 lg:px-10 w-full'>
         <div className='mt-12 w-full'>
-          <SearchComponent/>
-        </div>
+          <Suspense fallback={<>Loading...</>}>
+            <SearchComponent/>
+          </Suspense>
         <div className='flex mt-12'>
           <div className='w-0 overflow-hidden opacity-0 md:w-[30%]'>
             filter
@@ -90,7 +104,7 @@ async function Author({searchParams}: {searchParams: AuthorParams}) {
         <Paginator data={users}/>
       </div>
     </div>
-  )
-}
+    </div>
+  )}
 
 export default Author

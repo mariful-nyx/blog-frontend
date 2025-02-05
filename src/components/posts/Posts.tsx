@@ -35,7 +35,7 @@ function Posts({ data }: { data: PostListResponse }) {
                 >
                   {post.title}
                 </Link>
-                <p className="mt-1 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
+                <div className="mt-1 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
                   {
                     JSON.parse(post.description)?.map((item:any, index:number)=>(
                       <div key={index}>
@@ -51,7 +51,7 @@ function Posts({ data }: { data: PostListResponse }) {
                         )}
                       </div>))
                   }
-                </p>
+                </div>
                 <div className="flex justify-between items-center gap-4 mt-4">
                   <Link
                     href={`/profile/${post.posted_by}`}
@@ -68,9 +68,9 @@ function Posts({ data }: { data: PostListResponse }) {
                       {post.posted_by}
                     </span>
                   </Link>
-                  <p className="text-[12px] text-blue-400 font-bold ">
+                  <div className="text-[12px] text-blue-400 font-bold ">
                     {moment(post.updated_at).format("MMMM, DD, YYYY")}
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>

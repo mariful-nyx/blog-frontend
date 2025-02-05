@@ -1,12 +1,16 @@
-import { GetPosts } from '@/api/data'
-import {  PostListResponse } from '@/types/type'
+"use client"
+
 import Link from 'next/link';
 import Image from 'next/image';
 import noImage from '@/assets/images/noImage.jpg'
-import dynamic from 'next/dynamic';
+import { Suspense, useEffect, useState } from 'react';
+import SearchComponent from './component/Search';
+import useApi from '@/api/api';
+import { toast } from 'react-toastify';
+import Paginator from '@/components/paginator';
 
-const SearchComponent = dynamic(()=>import('./component/Search'), {ssr: false})
-const Paginator = dynamic(()=>import('@/components/paginator'), {ssr: false})
+// const SearchComponent = dynamic(()=>import('./component/Search'), {ssr: false})
+// const Paginator = dynamic(()=>import('@/components/paginator'), {ssr: false})
 
 
 interface PostParams {
@@ -14,17 +18,24 @@ interface PostParams {
   search: string;
 }
 
-async function Post({searchParams}: {searchParams: PostParams}) {
+function Post({searchParams}: {searchParams: PostParams}) {
+  const api = useApi()
+  const [posts, setPosts] = useState<any>()
 
-  const posts:PostListResponse = await GetPosts(searchParams)
-
+  useEffect(()=>{
+    api.posts(searchParams).then((response)=>{
+      setPosts(response.data)
+    }).catch(()=>toast.error('Error fetch posts !'))
+  },[searchParams])
 
   return (
     <>
         <div className='max-w-[1180px] mx-auto mt-8 px-4 lg:px-10'>
             <div>
                 <div>
-                  <SearchComponent/>
+                  <Suspense fallback={<>Loading...</>}>
+                    <SearchComponent/>
+                  </Suspense>
                   <div>
                         
                   </div>
@@ -36,7 +47,7 @@ async function Post({searchParams}: {searchParams: PostParams}) {
                     </div>
                     <div className='w-full md:w-[70%] flex flex-col gap-4'>
                       {posts &&
-                        posts?.results?.map((post, index) => (
+                        posts?.results?.map((post:any, index:number) => (
                         <Link href={`/posts/${post?.slug}`} key={index} legacyBehavior>
                           <div className="rounded-md shadow-md hover:shadow-lg duration-200 group w-full bg-white dark:bg-gray-800">
                             <div className="flex flex-col sm:flex-row gap-0 sm:gap-4">
@@ -69,6 +80,7 @@ async function Post({searchParams}: {searchParams: PostParams}) {
 
                                 <div className="text-slate-400 line-clamp-2 mt-3 w-full">
                                 {
+                                  post?.description &&
                                   JSON.parse(post?.description)?.map((item:any, index:number)=>(
                                     <div key={index}>
                                       {item.type === "paragraph" && (

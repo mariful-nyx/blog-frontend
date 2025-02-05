@@ -68,7 +68,7 @@ const SlateEditor = ({onChange}) => {
         placeholder="Enter some rich text…"
         spellCheck
         autoFocus
-        className='outline-none focus:outline-none'
+        className='outline-none focus:outline-none h-[300px] overflow-auto'
         
         onKeyDown={event => {
           for (const hotkey in HOTKEYS) {
@@ -182,9 +182,9 @@ export const Element = ({ attributes, children, element }) => {
       )
     default:
       return (
-        <p style={style} {...attributes}>
+        <div style={style} {...attributes}>
           {children}
-        </p>
+        </div>
       )
   }
 }
