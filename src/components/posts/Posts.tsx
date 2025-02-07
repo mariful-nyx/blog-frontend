@@ -36,7 +36,7 @@ function Posts({ data }: { data: PostListResponse }) {
                   {post.title}
                 </Link>
                 <div className="mt-1 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
-                  {
+                  {post.description && (
                     JSON.parse(post.description)?.map((item:any, index:number)=>(
                       <div key={index}>
                         {item.type === "paragraph" && (
@@ -49,7 +49,7 @@ function Posts({ data }: { data: PostListResponse }) {
                             ))}  
                           </div>
                         )}
-                      </div>))
+                      </div>)))
                   }
                 </div>
                 <div className="flex justify-between items-center gap-4 mt-4">

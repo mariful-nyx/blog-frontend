@@ -8,14 +8,14 @@ export const serviceItems =  [
     },
     {
         id: 6,
-        name: 'Mobile Application Development',
+        name: 'Mobile App Development',
         icon: '',
         description: 'The goal of mobile app development is to deliver a seamless, user-friendly experience.',
         link: 'mobile-application-development'
     },
     {
         id: 7,
-        name: 'Desktop Application Development',
+        name: 'Desktop App Development',
         icon: '',
         description: 'Predien specializes in creating sleek and innovative desktop applications that elevate user experiences.',
         link: 'desktop-application-development'

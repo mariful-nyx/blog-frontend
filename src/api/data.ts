@@ -1,15 +1,16 @@
 import { toast } from "react-toastify";
 import useApi from "./api";
 
+export const API_URL = process.env.NODE_ENV === "production" ? "https://blog-5pvj.vercel.app" : "http://127.0.0.1:8000"
+
+
 async function Post(slug: string){
     const api = useApi()
 
     try {
         const response = await api.post(slug)
         const data = await response.data
-        if (!data) {
-            return { notFound: true };
-          }
+
         return data
 
     } catch {
@@ -18,15 +19,15 @@ async function Post(slug: string){
 }
 
 
-async function GetPosts(params?:object) {
-    const api = useApi()
+async function GetPosts(params?:any) {
 
     try {
-        const response = await api.posts(params)
-        const data = await response.data
-        if (!data) {
-            return { notFound: true };
-          }
+        const queryString = params 
+            ? '?' + new URLSearchParams(params as Record<string, string>).toString() 
+            : '';
+        const response = await fetch( `${API_URL}/bpm/post/api/v1/posts/${queryString}`, { cache: 'no-cache'})
+        const data = await response.json()
+   
         return data
 
     } catch {
@@ -34,15 +35,16 @@ async function GetPosts(params?:object) {
     }
 }
 
-async function GetUsers(params?:object) {
-    const api = useApi()
+async function GetUsers(params?:any) {
 
     try {
-        const response = await api.getUsers(params)
-        const data = await response.data
-        if (!data) {
-            return { notFound: true };
-          }
+        const queryString = params 
+            ? '?' + new URLSearchParams(params as Record<string, string>).toString() 
+            : '';
+
+        const response = await fetch(`${API_URL}/bpm/user/api/v1/users/${queryString}`, {cache: 'no-cache'})
+        const data = await response.json()
+
         return data
 
     } catch {
@@ -56,9 +58,7 @@ async function GetUserDetail(username: string) {
     try {
         const response = await api.getUserDetail(username)
         const data = await response.data
-        if (!data) {
-            return { notFound: true };
-          }
+
         return data
 
     } catch {
@@ -68,14 +68,11 @@ async function GetUserDetail(username: string) {
 
 
 async function GetCategories() {
-    const api = useApi()
 
     try {
-        const response = await api.getCategories()
-        const data = await response.data
-        if (!data) {
-            return { notFound: true };
-          }
+        const response = await fetch(`${API_URL}/bpm/category/api/v1/categories/`, {cache: 'no-cache'})
+        const data = await response.json()
+
         return data
 
     } catch {

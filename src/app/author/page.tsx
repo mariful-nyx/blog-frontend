@@ -1,12 +1,13 @@
 "use client"
+
 import React, { Suspense, useEffect, useState } from 'react'
-import { GetUsers } from '@/api/data';
+
 import { User } from '@/types/type';
 import userImg from '@/assets/images/user.webp'
 import Image from 'next/image';
 import RoleBadge from '@/components/badge/RoleBadge';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
+
 import useApi from '@/api/api';
 import { toast } from 'react-toastify';
 import SearchComponent from '../post/component/Search';

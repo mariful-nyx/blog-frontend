@@ -44,7 +44,7 @@ function NavBar() {
 
 
   return (
-    <div className="w-full sticky top-0 z-30 bg-white backdrop-blur-lg bg-opacity-50">
+    <div className="w-full sticky top-0 z-30 bg-white dark:bg-black shadow-lg dark:border-b border-slate-400">
     <div className="max-w-[1180px] mx-auto ">
       <div className="hidden md:flex justify-between h-[50px] items-center px-2">
         <div>
@@ -54,7 +54,7 @@ function NavBar() {
           <ul className="flex gap-6 font-bold list-none">
             <li><Link href={`/author`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">author</Link></li>
             <li><Link href={`/post`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">post</Link></li>
-            <li><Link href={`/news`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">news</Link></li>
+            <li><Link href={`/about`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">about</Link></li>
             <li><Link href={`/write`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">write</Link></li>
             
             {auth.isAuthenticated ? 
@@ -98,7 +98,7 @@ function NavBar() {
             <ul className="flex flex-col gap-6 font-bold list-none">
               <li><Link href={`/author`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">author</Link></li>
               <li><Link href={`/post`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">post</Link></li>
-              <li><Link href={`/news`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">news</Link></li>
+              <li><Link href={`/about`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">about</Link></li>
               <li><Link href={`/write`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">write</Link></li>
               
               {auth.isAuthenticated ? 
@@ -107,21 +107,7 @@ function NavBar() {
                 <li><Link href={`/login`} className="hover:text-gray-400 transition-all duration-150 uppercase text-[12px]">login</Link></li>
               }
             </ul>
-              {/* <Link
-                href={item.link} 
-                key={index} 
-                className='flex gap-1 items-center py-6 text-blue-950 dark:text-white text-nowrap font-bold hover:text-slate-300 duration-200'
-                onClick={()=>{
-                  if(!activeIndex){
-                    handleMouseEnter(index)
-                  } else{
-                    handleMouseLeave()
-                  }
-                }}
-                onMouseLeave={handleMouseLeave}
-              >
-                {item.name} 
-              </Link> */}
+          
           </div>
         </div>
       </div>

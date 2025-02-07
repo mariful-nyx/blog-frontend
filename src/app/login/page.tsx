@@ -52,8 +52,8 @@ function Login() {
 
   return (
     <div>
-      <div className='flex'>
-        <div className='w-[50%] max-w-[590px] mx-auto mr-0'>
+      <div className='flex flex-col md:flex-row'>
+        <div className='w-full md:w-[50%] max-w-full md:max-w-[590px] mx-auto mr-0'>
           <div className='h-[90vh]'>
             <form className='flex flex-col gap-6 px-16 items-center justify-center h-full'>
               <input
@@ -89,6 +89,14 @@ function Login() {
                   />}
                 </div>
               </div>
+              <div className='flex justify-between'>
+                <div className='flex items-center gap-2'>
+                  <input type='checkbox' />  <div className='text-sm text-blue-500'>Remember password</div>
+                </div>
+                <div>
+                    Forgot password
+                </div>
+              </div>
               <button 
                 type='submit' 
                 onClick={handleLogin}
@@ -103,7 +111,7 @@ function Login() {
           </div>
           
         </div>
-        <div className='w-[50%] h-screen bg-blue-500'>
+        <div className='w-full md:w-[50%] h-screen bg-blue-500'>
           ui portion
         </div>
       </div>
