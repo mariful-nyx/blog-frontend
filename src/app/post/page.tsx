@@ -61,7 +61,7 @@ function Post({searchParams}: {searchParams: PostParams}) {
                                 <Image
                                   src={noImage}
                                   alt=""
-                                  className="h-[150px] w-[200px] object-cover dark:mix-blend-overlay"
+                                  className="h-[150px] w-full sm:w-[200px] object-cover dark:mix-blend-overlay"
                                 />
                               )}
                               <div className="w-full mt-2 mr-4 mb-2 p-4 sm:p-0">

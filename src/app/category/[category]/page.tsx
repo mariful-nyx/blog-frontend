@@ -8,13 +8,16 @@ import Paginator from "@/components/paginator";
 
 async function Category({ params }: { params: { category: string } }) {
   const cateData = await GetCategories()
-  const posts = await GetPosts()
+
+  const normalizeCategoryString = params.category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ')
+  
+  const posts = await GetPosts({category: normalizeCategoryString})
 
   return (
     <div className="">
         <Categories categories={cateData} />
         <div className="flex justify-center py-6 max-w-[1180px] mx-auto">
-          <strong className="text-xl text-green-500">{params.category.split('-').join(' ')}</strong>
+          <strong className="text-xl text-green-500">{normalizeCategoryString}</strong>
         </div>
         <div className="flex items-center h-[15vh] max-w-[1180px] mx-auto px-4 md:px-10">
           <CategoryFolder category={params.category} />
